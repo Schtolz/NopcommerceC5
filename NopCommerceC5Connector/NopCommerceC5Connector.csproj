@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15C9C2AC-542A-4402-B391-7772D4F43ED4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nop.Plugin.Other.NopCommerceC5Connector</RootNamespace>
+    <AssemblyName>Nop.Plugin.Other.NopCommerceC5Connector</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\..\..\..\Hp Marsking\csvhelper\src\CsvHelper35\obj\Release\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Nop.Core">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Nop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Nop.Data">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Nop.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Nop.Services">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Nop.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Nop.Web">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Nop.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Nop.Web.Framework">
+      <HintPath>..\..\..\..\..\umbraco\4.9+2.6\nopcommerce_2.61\Presentation\Nop.Web\bin\Nop.Web.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\TrackingController.cs" />
+    <Compile Include="Data\TrackingRecordMap.cs" />
+    <Compile Include="Data\TrackingRecordObjectContext.cs" />
+    <Compile Include="DependencyRegistrar.cs" />
+    <Compile Include="Domain\TrackingRecord.cs" />
+    <Compile Include="Models\NopCommerceC5ConnectorSettingsModel.cs" />
+    <Compile Include="NopCommerceC5ConnectorPlugin.cs" />
+    <Compile Include="NopCommerceC5ConnectorSettings.cs" />
+    <Compile Include="NopCommerceC5ConnectorSynchronizationTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IViewTrackingService.cs" />
+    <Compile Include="Services\NopCommerceC5ConnectorInstallationService.cs" />
+    <Compile Include="Services\ViewTrackingService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Views\Settings\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Description.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

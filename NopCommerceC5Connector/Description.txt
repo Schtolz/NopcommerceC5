@@ -1,0 +1,8 @@
+﻿Group: Other
+FriendlyName: Nopcommerce C5 Connector
+SystemName: Nop.Plugin.Other.NopCommerceC5Connector
+Version: 1.00
+SupportedVersions: 2.65
+Author: Nosunset
+DisplayOrder: 1
+FileName: Nop.Plugin.Other.NopCommerceC5Connector.dll
