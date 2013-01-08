@@ -8,9 +8,14 @@ using System.Web.Mvc;
 
 namespace Nop.Plugin.Other.NopCommerceC5Connector.Models
 {
+
     public class NopCommerceC5ConnectorSettingsModel
     {
         private IList<SelectListItem> _listOptions;
+
+        public virtual SelectList ImportTypes { get; set; }
+
+        public virtual Utility.Utility.ImportType ImportType { get; set; }
 
         /// <summary>
         /// Gets or sets the API key.

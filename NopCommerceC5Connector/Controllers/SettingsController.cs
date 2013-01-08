@@ -1,5 +1,6 @@
 ﻿using Nop.Core.Domain.Tasks;
 using Nop.Plugin.Other.NopCommerceC5Connector.Models;
+using Nop.Plugin.Other.NopCommerceC5Connector.Services;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Tasks;
@@ -10,6 +11,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Nop.Plugin.Other.NopCommerceC5Connector.Controllers
@@ -21,15 +23,17 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector.Controllers
         private readonly IScheduleTaskService _scheduleTaskService;
         private readonly ISettingService _settingService;
         private readonly ILocalizationService _localizationService;
+        private readonly IImportFabric _importFabric;
         private readonly NopCommerceC5ConnectorSettings _settings;
 
         public SettingsController(ISettingService settingService, IScheduleTaskService scheduleTaskService,
-            ILocalizationService localizationService, NopCommerceC5ConnectorSettings settings)
+            ILocalizationService localizationService, NopCommerceC5ConnectorSettings settings, IImportFabric importFabric)
         {
             this._settingService = settingService;
             this._scheduleTaskService = scheduleTaskService;
             this._localizationService = localizationService;
             this._settings = settings;
+            this._importFabric = importFabric;
         }
 
         [NonAction]
@@ -124,7 +128,7 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector.Controllers
 
         [HttpPost, ActionName("Index")]
         [FormValueRequired("sync")]
-        public ActionResult Sync()
+        public ActionResult Sync(HttpPostedFileBase file)
         {
             var model = PrepareModel();
             try

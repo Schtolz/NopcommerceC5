@@ -7,7 +7,7 @@
 
 @model NopCommerceC5ConnectorSettingsModel
 <div>
-    @using (Html.BeginForm())
+    @using (Html.BeginRouteForm("Nop.Plugin.Other.NopCommerceC5Connector.Configure", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <script type="text/javascript">
             $(document).ready(function () {
@@ -29,51 +29,7 @@
         </script>
     
         <table class="adminContent">
-            <tr>
-                <td class="adminTitle">
-                    @Html.LabelFor(m => m.ApiKey):
-                </td>
-                <td class="adminData">
-                    @Html.EditorFor(m => m.ApiKey)
-                    @Html.ValidationMessageFor(m => m.ApiKey)
-                </td>
-            </tr>
-            <tr>
-                <td class="adminTitle">
-                    @Html.LabelFor(m => m.WebHookKey):
-                </td>
-                <td class="adminData">
-                    @Html.EditorFor(m => m.WebHookKey)
-                    @Html.ValidationMessageFor(m => m.WebHookKey)
-                </td>
-            </tr>
-            <tr>
-                <td class="adminTitle">
-                    @Html.LabelFor(m => m.DefaultListId):
-                </td>
-                <td class="adminData">
-                    @Html.DropDownListFor(m => m.DefaultListId, Model.ListOptions)
-                    @Html.ValidationMessageFor(m => m.DefaultListId)
-                </td>
-            </tr>
-            <tr>
-                <td class="adminTitle">
-                    @Html.LabelFor(m => m.AutoSync):
-                </td>
-                <td class="adminData">
-                    @Html.EditorFor(m => m.AutoSync)
-                    @Html.ValidationMessageFor(m => m.AutoSync)
-                </td>
-            </tr>
-            <tr id="pnlAutoSyncEachMinutes">
-                <td class="adminTitle">
-                    @Html.LabelFor(model => model.AutoSyncEachMinutes):
-                </td>
-                <td class="adminData">
-                    @Html.EditorFor(model => model.AutoSyncEachMinutes)
-                    @Html.ValidationMessageFor(model => model.AutoSyncEachMinutes)
-                </td>
-            </tr>
+           
             @if (!String.IsNullOrEmpty(Model.SaveResult))
             {
                 <tr>
@@ -82,6 +38,13 @@
                     </td>
                 </tr>
             }
+
+            <tr>
+                <td colspan="2" width="100%">
+                    @Html.DropDownListFor(model => model.ImportTypes, new SelectList(Enum.GetValues(typeof(Nop.Plugin.Other.NopCommerceC5Connector.Utility.Utility.ImportType))))
+                </td>
+            </tr>
+
             <tr>
                 <td colspan="2" width="100%">
                     <input type="submit" name="save" class="t-button" value="@T("Admin.Common.Save")" />
@@ -101,6 +64,12 @@
                     </td>
                 </tr>
             }
+
+             <tr>
+                    <td colspan="2" width="100%" style="color: red">
+            <input type="file" name="file" id="file" />
+                         </td>
+                </tr>
             <tr>
                 <td colspan="2" width="100%">
                     <input type="submit" name="sync" class="t-button" value="@T("Plugin.Misc.MailChimp.ManualSync")" />
