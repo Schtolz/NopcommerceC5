@@ -128,13 +128,14 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector.Controllers
 
         [HttpPost, ActionName("Index")]
         [FormValueRequired("sync")]
-        public ActionResult Sync(HttpPostedFileBase file)
+        public ActionResult Sync(NopCommerceC5ConnectorSettingsModel model, HttpPostedFileBase file)
         {
-            var model = PrepareModel();
+            //var model = PrepareModel();
             try
             {
                 var sb = new StringBuilder();
-
+                IImportService importService = _importFabric.GetImportService(model.ImportType);
+                importService.Import(file);
                 /*var result = _mailChimpApiService.Synchronize();
                 //subscribe
                 sb.Append("Subscribe results: ");
@@ -160,6 +161,7 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector.Controllers
                 }
                 //set result text
                 model.SyncResult = sb.ToString();*/
+                model.SyncResult = "Success";
             }
             catch (Exception exc)
             {

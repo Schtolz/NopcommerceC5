@@ -9,7 +9,7 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector.Utility
     public class Utility
     {
         public enum ImportType { 
-            Products, Customers
+            Products, Customers, Discounts
         }
     }
 }

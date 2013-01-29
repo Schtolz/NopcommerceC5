@@ -24,6 +24,10 @@ namespace Nop.Plugin.Other.NopCommerceC5Connector
             //builder.RegisterType<SubscriptionEventQueueingService>().As<ISubscriptionEventQueueingService>().InstancePerHttpRequest();
             builder.RegisterType<NopCommerceC5ConnectorInstallationService>().AsSelf().InstancePerHttpRequest();
             builder.RegisterType<ImportFabric>().As<IImportFabric>().InstancePerHttpRequest();
+
+            builder.RegisterType<ProductsImportService>().AsSelf().InstancePerHttpRequest();
+            builder.RegisterType<CustomersImportService>().AsSelf().InstancePerHttpRequest();
+
             //builder.RegisterType<MailChimpApiService>().As<IMailChimpApiService>().InstancePerHttpRequest();
 
             //Register object context
